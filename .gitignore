@@ -26,5 +26,4 @@ sender
 
 # colcon/CMake output
 build
-install
 log
