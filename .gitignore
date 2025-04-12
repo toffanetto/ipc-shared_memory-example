@@ -12,6 +12,7 @@ _deps
 CMakeUserPresets.json
 receiver
 sender
+periodic_sender
 clear_all
 *.pyc
 *.iml
