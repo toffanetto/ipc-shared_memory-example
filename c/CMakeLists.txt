@@ -20,5 +20,5 @@ target_compile_options(clear_all PRIVATE -g)
 
 
 add_executable(periodic_sender src/periodic_sender.c)
-target_link_libraries(clear_all PRIVATE Threads::Threads -lrt)
+target_link_libraries(periodic_sender PRIVATE Threads::Threads -lrt)
 target_compile_options(periodic_sender PRIVATE -g)
