@@ -10,6 +10,7 @@ int main()
     // Semaphore variable
     sem_t *sem_shm;
 
+    // Creating semaphore
     sem_shm = sem_open("/sem_shm", O_CREAT, 0644, 1);
 
     // Create shared memory resource
@@ -23,11 +24,11 @@ int main()
 
     // Now we can access the shared memory segment directly from shm_buf
     // Trying to get the semaphore and waiting until it occurs
-    if (sem_wait(sem_shm) == 0)
+    if (sem_trywait(sem_shm) == 0)
     {
         // Semaphore picked!
-
-        printf("%s\n", shm_buf->string);
+        strcpy(shm_buf->string, "Hello World from SHM!");
+        shm_buf->size = strlen(shm_buf->string);
 
         // Realaesing the semaphore
         sem_post(sem_shm);
@@ -35,7 +36,7 @@ int main()
 
     // Cleaning semaphore stuff
     sem_close(sem_shm);
-    sem_unlink("/sem_shm");
+    // sem_unlink("/sem_shm");
 
     // Cleaning shared memory stuff (deletes the shared section)
     // shm_unlink("/shm_buf");
