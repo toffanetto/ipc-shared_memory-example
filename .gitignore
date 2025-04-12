@@ -12,6 +12,7 @@ _deps
 CMakeUserPresets.json
 receiver
 sender
+clear_all
 *.pyc
 *.iml
 *.swp
@@ -26,4 +27,5 @@ sender
 
 # colcon/CMake output
 build
+install
 log
