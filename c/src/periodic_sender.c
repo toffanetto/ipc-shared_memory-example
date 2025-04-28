@@ -37,6 +37,7 @@ int main()
             // Realaesing the semaphore
             sem_post(sem_shm);
         }
+        sleep(1);
     }
 
     // Cleaning semaphore stuff
