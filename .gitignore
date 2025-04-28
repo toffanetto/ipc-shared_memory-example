@@ -30,3 +30,4 @@ clear_all
 build
 install
 log
+*.tar
