@@ -28,8 +28,9 @@ int main()
     // Trying to get the semaphore and waiting until it occurs
     while (1)
     {
-        if (sem_trywait(sem_shm) == 0)
+        if (sem_wait(sem_shm) == 0)
         {
+            printf("sem\n");
             // Semaphore picked!
             strcpy(shm_buf->string, "Updating size each interation...");
             shm_buf->size = shm_buf->size + 1;

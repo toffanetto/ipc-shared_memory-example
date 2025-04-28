@@ -11,10 +11,12 @@ RUN apt install ros-dev-tools -y
 
 # Build package
 RUN . "/opt/ros/$ROS_DISTRO/setup.sh" && \
-    colcon build --symlink-install --cmake-args=-DCMAKE_BUILD_TYPE=Release
+    colcon build --cmake-args=-DCMAKE_BUILD_TYPE=Release
 
 # Cleaning up
-RUN apt remove ros-dev-tools -y && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
+WORKDIR /ros2_ws
+
+RUN rm -rf build/ log/ src/ && apt remove ros-dev-tools -y && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
 # Setup entrypoint
 COPY --chmod=755 ./ros_entrypoint.sh /
