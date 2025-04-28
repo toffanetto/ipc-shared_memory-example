@@ -30,7 +30,7 @@ int main()
     {
         if (sem_wait(sem_shm) == 0)
         {
-            printf("sem\n");
+            printf("Size: %d\n", shm_buf->size);
             // Semaphore picked!
             strcpy(shm_buf->string, "Updating size each interation...");
             shm_buf->size = shm_buf->size + 1;

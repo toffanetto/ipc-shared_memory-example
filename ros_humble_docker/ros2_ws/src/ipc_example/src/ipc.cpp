@@ -22,8 +22,6 @@ namespace ipc
 
         // Map the shared memory address in local process addressing
         shm_buf = (shm_buf_t *)mmap(0, buf_size, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
-
-        sem_wait(sem_shm);
     }
 
     IpcExample::~IpcExample()
@@ -40,8 +38,6 @@ namespace ipc
     void IpcExample::msg_timer_callback()
     {
 
-        sem_post(sem_shm);
-
         // Now we can access the shared memory segment directly from shm_buf
         // Trying to get the semaphore and waiting until it occurs
         if (sem_wait(sem_shm) == 0)
@@ -55,6 +51,7 @@ namespace ipc
             msg_pub_->publish(msg);
 
             // Realaesing the semaphore
+            sem_post(sem_shm);
         }
     }
 
